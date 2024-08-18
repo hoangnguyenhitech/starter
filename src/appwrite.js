@@ -41,7 +41,6 @@ class AppwriteService {
         'thegioibooking',
         collectionId
       );
-      console.log('res:getAllListDoc===', res);
       return res;
     } catch (error) {
       return error;
