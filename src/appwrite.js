@@ -1,5 +1,4 @@
-import { Client, Storage, Query, Databases } from 'node-appwrite';
-import { getExpiryDate } from './util.js';
+import { Client, Storage, Databases } from 'node-appwrite';
 
 class AppwriteService {
   constructor() {
@@ -19,21 +18,6 @@ class AppwriteService {
    * @param {string} bucketId - The ID of the storage bucket to clean.
    * @returns {Promise<void>} A Promise that resolves when the bucket is cleaned.
    */
-  async cleanBucket(bucketId) {
-    let response;
-    const queries = [
-      Query.lessThan('$createdAt', getExpiryDate()),
-      Query.limit(25),
-    ];
-    do {
-      response = await this.storage.listFiles(bucketId, queries);
-      await Promise.all(
-        response.files.map((file) =>
-          this.storage.deleteFile(bucketId, file.$id)
-        )
-      );
-    } while (response.files.length > 0);
-  }
 
   async getAllListDoc(collectionId) {
     try {
