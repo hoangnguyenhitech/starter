@@ -32,4 +32,4 @@ class AppwriteService {
   }
 }
 
-export default AppwriteService;
+export { AppwriteService } ;
